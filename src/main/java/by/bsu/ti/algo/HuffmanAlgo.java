@@ -62,14 +62,15 @@ public class HuffmanAlgo {
 
 	public static Map<String, Node> calculateNodeProbabilitiesByText(String text, int symCount) {
 		Map<String, Node> nodesMap = new TreeMap<>();
-		double symbolProbability = 1.0 / text.length();
+		double symbolProbability = (double) symCount / text.length();
 		String[] symbols = text.split("");
 		
-		for (int i = 0; i < symbols.length - symCount + 1; i++) {
+		for (int i = 0; i < symbols.length; i++) {
 			String symbolSet = ""; // 1 or symCount
 			for (int j = 0; j < symCount; j++) {
 				symbolSet += symbols[i + j];
 			}
+			i += symCount - 1;
 
 			Node node = nodesMap.get(symbolSet);
 			if (node == null) {
